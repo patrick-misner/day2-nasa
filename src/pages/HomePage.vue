@@ -6,6 +6,9 @@
         <h1 class=""><span class="border-bottom border-3 border-dark">NASA Picture of the Day</span></h1>
         <span>{{ pod?.copyright }}</span>
         <img class="img-fluid p-5" :src="pod?.hdurl" alt="">
+        <form>
+          <input type="date">
+        </form>
       </div>
     </div>
   </div>
