@@ -1,18 +1,35 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo" class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card m-3 text-center">
+        <h1 class=""><span class="border-bottom border-3 border-dark">NASA Picture of the Day</span></h1>
+        <span>{{ pod?.copyright }}</span>
+        <img class="img-fluid p-5" :src="pod?.hdurl" alt="">
+      </div>
     </div>
   </div>
+</div>
+
+
 </template>
 
 <script>
+import { computed, onMounted } from "@vue/runtime-core";
+import { podService } from "../services/PodService"
+import { AppState } from "../AppState";
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    onMounted(async() =>{
+      await podService.getPod()
+    });
+      return {
+        pod: computed(() => AppState.pod)
+      }
+  }
 }
+      
 </script>
 
 <style scoped lang="scss">
